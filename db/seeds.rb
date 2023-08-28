@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require "open-uri"
+require "nokogiri"
+
+url = "./db/website.html"
+
+html_file = URI.open(url).read
+html_doc = Nokogiri::HTML.parse(html_file)
+
+html_doc.search(".card").each do |element|
+  camera_brand = element.search(".overline").text
+
+  title = element.search(".product a").text
+  puts title
+
+end
