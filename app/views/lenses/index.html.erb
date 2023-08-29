@@ -1,1 +1,29 @@
-<h1>HELLO</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>Lenses to rent</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Banner url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lenses.each do |lens| %>
+      <tr>
+        <td><%= lens.name %></td>
+        <td><%= lens.banner_url %></td>
+        <td><%= link_to 'Details', lens %></td>
+        <td><%= link_to 'Edit', edit_lens_path(lens) %></td>
+        <td><%= link_to 'Delete', lens, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add my Lens', new_lens_path %>
