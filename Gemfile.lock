@@ -103,6 +103,8 @@ GEM
       railties (>= 3.2)
     erubi (1.12.0)
     execjs (2.8.1)
+    faker (3.2.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
@@ -216,6 +218,9 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    watir (7.3.0)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (~> 4.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -242,6 +247,7 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
+  faker
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails
@@ -256,6 +262,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  watir
   web-console
   webdrivers
 

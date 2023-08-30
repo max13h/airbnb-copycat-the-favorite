@@ -35,8 +35,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_26_051903) do
 
   create_table "lenses", force: :cascade do |t|
     t.string "name"
-    t.string "type"
-    t.float "price"
+    t.string "lens_type"
+    t.integer "price"
     t.string "location"
     t.bigint "user_id", null: false
     t.bigint "camera_id", null: false
