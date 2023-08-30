@@ -19,10 +19,10 @@ class LensesController < ApplicationController
 
   # POST /lenses
   def create
-    @lens = Garden.new(garden_params)
+    @lens = Lens.new(lens_params)
 
     if @lens.save
-      redirect_to @lens, notice: 'Lens was successfully added.'
+      redirect_to lens_path(@lens), notice: 'Lens was successfully added.'
     else
       render :new
     end
@@ -51,6 +51,6 @@ class LensesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lens_params
-    params.require(:lens).permit(:name, :banner_url)
+    params.require(:lens).permit(:name, :type, :price, :location)
   end
 end
