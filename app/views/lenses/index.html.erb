@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Banner url</th>
+      <th>Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @lenses.each do |lens| %>
       <tr>
         <td><%= lens.name %></td>
-        <td><%= lens.banner_url %></td>
+        <td><%= lens.type %></td>
         <td><%= link_to 'Details', lens %></td>
         <td><%= link_to 'Edit', edit_lense_path(lens) %></td>
         <td><%= link_to 'Delete', lens, method: :delete, data: { confirm: 'Are you sure?' } %></td>
