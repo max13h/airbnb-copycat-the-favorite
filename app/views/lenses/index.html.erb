@@ -17,7 +17,7 @@
         <td><%= lens.name %></td>
         <td><%= lens.banner_url %></td>
         <td><%= link_to 'Details', lens %></td>
-        <td><%= link_to 'Edit', edit_lens_path(lens) %></td>
+        <td><%= link_to 'Edit', edit_lense_path(lens) %></td>
         <td><%= link_to 'Delete', lens, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'Add my Lens', new_lens_path %>
+<%= link_to 'Add my Lens', new_lense_path %>
