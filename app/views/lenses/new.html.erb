@@ -1,0 +1,23 @@
+<h1>Add a new Lens</h1>
+
+<%= form_for @lens do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :lens_type %>
+    <%= f.text_area :lens_type %>
+  </div>
+    <div>
+    <%= f.label :price %>
+    <%= f.text_area :price %>
+  </div>
+    <div>
+    <%= f.label :location %>
+    <%= f.text_area :location %>
+  </div>
+  <div>
+    <%= f.submit 'Create Lens' %>
+  </div>
+<% end %>

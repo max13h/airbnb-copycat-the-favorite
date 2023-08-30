@@ -1,1 +1,21 @@
-<h1>HELLO</h1>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Lenses to rent</h1>
+  
+  <div class="row">
+
+    <% @lenses.each do |lens| %>
+
+      <%= link_to lense_path(lens), class: "col" do %>
+        <div class="card" style="width: 18rem;">
+          <%= cl_image_tag lens.image.key, crop: :fill %>
+          <h5 class="card-title fw-bold"><%= lens.name %></h5>
+          <p class="card-text"><%= lens.lens_type %></p>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
+  <%= link_to 'Add my Lens', new_lense_path %>
+</div>
