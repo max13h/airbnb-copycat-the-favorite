@@ -3,6 +3,26 @@ require "nokogiri"
 require "faker"
 require "watir"
 
+u = User.count
+l = Lens.count
+c = Camera.count
+
+puts "There is #{u} users, #{l} lenses and #{c} cameras in you database"
+puts "Do you want to continue (y/n)"
+input = gets.chomp
+
+return unless input == "y" || input == "Y"
+
+puts "Clear database..."
+puts ""
+
+Lens.destroy_all
+User.destroy_all
+Camera.destroy_all
+
+puts "Database empty"
+puts ""
+
 # Create cameras ======================
 camera_url = "https://www.borrowlenses.com/rent/category/rentalgear/cameras?q=%3AmostPopular%3Acategory%3Acameras&text=&clearBrands="
 
@@ -27,6 +47,8 @@ camera_html_doc.search(".card").each do |element|
 end
 # ============================================
 
+puts""
+
 # Create users # =============================
 user_count = 1
 rand(6..10).times do
@@ -38,6 +60,8 @@ rand(6..10).times do
 end
 # ============================================
 
+puts""
+
 # Create lenses # =============================
 
 lenses_type = ["Wide", "Normal", "Ultrawide", "Macro"]
@@ -45,7 +69,7 @@ city = ["London", "Paris", "Madrid", "Berlin"]
 browser = Watir::Browser.new :chrome
 
 lenses_type.each do |lens_type|
-  puts "lenses of type #{lens_type}"
+  puts "Lenses of type #{lens_type}"
   puts ""
   lens_url = "https://www.borrowlenses.com/rent/category/rentalgear/lenses?q=%3AmostPopular%3ALenses+Type%3A#{lens_type}&text=&clearBrands=&Lenses+Type-#{lens_type}=on"
 
@@ -55,14 +79,10 @@ lenses_type.each do |lens_type|
   lens_html_doc = Nokogiri::HTML.parse(browser.html)
 
   lens_count = 1
-  # random_nb = rand(3..6)
-
 
   lens_html_doc.search(".card").each do |element|
-    # break if lens_count == random_nb
 
     name = element.search(".product a").attribute("data-productname")
-    puts name
 
     unless name
       next
@@ -73,7 +93,13 @@ lenses_type.each do |lens_type|
     user = User.all.sample
     camera = Camera.all.sample
 
-    Lens.create!(
+    image_url = element.search(".splide__slide.is-active.is-visible img").attribute("src")
+
+    next unless image_url.value.include?("https://")
+
+    lens_image = URI.open(image_url)
+
+    lens = Lens.new(
       name: name,
       lens_type: lens_type,
       price: price,
@@ -82,10 +108,18 @@ lenses_type.each do |lens_type|
       camera: camera
     )
 
+    lens.image.attach(io: lens_image, filename: "#{name}.jpg")
+
+    lens.save!
+
     puts "Lens nb #{lens_count} created "
 
-    # lens_count += 1
+    lens_count += 1
   end
   puts ""
 end
+
+browser.close
 # ============================================
+
+puts "Database successfully filled !"
