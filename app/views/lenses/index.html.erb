@@ -16,7 +16,7 @@
       <tr>
         <td><%= lens.name %></td>
         <td><%= lens.type %></td>
-        <td><%= link_to 'Details', lens %></td>
+        <td><%= link_to 'Details', show_lense_path(lens) %></td>
         <td><%= link_to 'Edit', edit_lense_path(lens) %></td>
         <td><%= link_to 'Delete', lens, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

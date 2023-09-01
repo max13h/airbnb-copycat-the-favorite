@@ -1,5 +1,39 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @lens.banner_url %>');">
-  <div class="container">
-    <h1><%= @lens.name %></h1>
+<h1><%= @lens.name %></h1>
+
+<div class="lens-details">
+  <div class="detail">
+    <strong>Name:</strong> <%= @lens.name %>
+  </div>
+  <div class="detail">
+    <strong>Type:</strong> <%= @lens.type %>
+  </div>
+  <div class="detail">
+    <strong>Price:</strong> <%= number_to_currency(@lens.price, unit: '€') %>
+  </div>
+  <div class="detail">
+    <strong>Owner:</strong> <%= @lens.user.name %>
+  </div>
+  <div class="detail">
+    <strong>Camera compatibility:</strong> <%= @lens.camera.name %>
   </div>
 </div>
+
+<h2>Is this lens avaiable?</h2>
+<% if @lens.bookings.any? %>
+  <div class="bookings">
+    <% @lens.bookings.each do |booking| %>
+      <div class="booking">
+        <div class="detail">
+          <strong>Booked from:</strong> <%= booking.start_date %>
+        </div>
+        <div class="detail">
+          <strong>to:</strong> <%= booking.end_date %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No reservation for this lens.</p>
+<% end %>
+
+<%= link_to 'Back to all', lenses_path %>
