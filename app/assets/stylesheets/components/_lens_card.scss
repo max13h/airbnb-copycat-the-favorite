@@ -1,0 +1,12 @@
+.lens-card {
+  background-color: white;
+  width: 18rem;
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px black;
+}
+
+.lens-card .lens-details {
+  display: flex;
+  justify-content: space-between;
+}

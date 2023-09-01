@@ -1,18 +1,24 @@
-<nav class="d-flex justify-content-between align-items-center py-2 px-2 global-navbar shadow-sm">
+<nav class="d-flex justify-content-between align-items-center p-2 global-navbar shadow-sm">
   <%= link_to root_path, class: "ms-5"  do %>
     <%= image_tag("airbnb-copyat-logo.svg") %>
   <% end %>
+
   <%= form_with url: "/search", method: :get, class: "flex-grow-1 mx-5 d-flex justify-content-center align-items-center" do |form| %>
     <%= form.text_field(:query, placeholder: 'Search for a lens', class: "w-100 rounded-pill py-1 px-2", style: "max-width: 500px") %>
   <% end %>
 
-
-  <div class="d-flex justify-content-between align-items-center">
-
+  <div class="d-flex justify-content-center align-items-center me-5">
     <% if user_signed_in? %>
-      <%= link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "link-underline link-underline-opacity-0 me-5" do %>
-        <i class="ri-user-smile-line fs-2"></i>
-      <% end %>
+      <div class="" id="navbarSupportedContent">
+        <div class="navbar-nav me-auto ">
+          <i class="ri-user-smile-line fs-2 hover-effect" id="navbarDropdown" data-bs-toggle="dropdown", aria-haspopup="true" aria-expanded="false"></i>
+          <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
+            <%= link_to "Dashboard", "#", class: "dropdown-item" %>
+            <%= link_to "Profil", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+          </div>
+        </div>
+      </div>
     <% else %>
     <%= link_to "Add my lens", '/', class: "btn btn-secondary me-5" %>
       <div class="connect-btn me-3">
