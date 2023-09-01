@@ -51,6 +51,6 @@ class LensesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lens_params
-    params.require(:lens).permit(:name, :type, :price, :location)
+    params.require(:lens).permit(:name, :lens_type, :price, :location)
   end
 end
