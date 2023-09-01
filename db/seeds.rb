@@ -31,7 +31,6 @@ camera_html_doc = Nokogiri::HTML.parse(camera_html_file)
 camera_count = 1
 random_nb = rand(5..8)
 
-
 camera_html_doc.search(".card").each do |element|
   break if camera_count == random_nb
 
@@ -42,12 +41,12 @@ camera_html_doc.search(".card").each do |element|
   Camera.create!(brand: camera_brand, model: camera_model)
 
   puts "Camera nb #{camera_count} created "
-  
+
   camera_count += 1
 end
 # ============================================
 
-puts""
+puts ""
 
 # Create users # =============================
 user_count = 1
@@ -60,66 +59,52 @@ rand(6..10).times do
 end
 # ============================================
 
-puts""
+puts ""
 
 # Create lenses # =============================
 
 lenses_type = ["Wide", "Normal", "Ultrawide", "Macro"]
 city = ["London", "Paris", "Madrid", "Berlin"]
-browser = Watir::Browser.new :chrome
+lens_count = 1
 
 lenses_type.each do |lens_type|
   puts "Lenses of type #{lens_type}"
   puts ""
-  lens_url = "https://www.borrowlenses.com/rent/category/rentalgear/lenses?q=%3AmostPopular%3ALenses+Type%3A#{lens_type}&text=&clearBrands=&Lenses+Type-#{lens_type}=on"
 
-  browser.goto lens_url
-  sleep 3
+  lenses_url = "https://www.borrowlenses.com/rent/category/rentalgear/lenses?q=%3AmostPopular%3ALenses+Type%3A#{lens_type}&text=&clearBrands=&Lenses+Type-#{lens_type}=on"
 
-  lens_html_doc = Nokogiri::HTML.parse(browser.html)
+  lenses_response = URI.open(lenses_url).read
+  lenses_html = Nokogiri::HTML.parse(lenses_response)
 
-  lens_count = 1
+  lenses_html.search("#matchingProducts .card").each do |card|
+    image_url = card.search("img").attribute("src").value
+    image_url = "https://www.borrowlenses.com#{image_url}" unless image_url.include?("https://")
 
-  lens_html_doc.search(".card").each do |element|
-
-    name = element.search(".product a").attribute("data-productname")
-
-    unless name
-      next
-    end
-
-    price =  element.search(".price").text.tr("$", "").chomp.to_i
-    location = city.sample
-    user = User.all.sample
-    camera = Camera.all.sample
-
-    image_url = element.search(".splide__slide.is-active.is-visible img").attribute("src")
-
-    next unless image_url.value.include?("https://")
-
-    lens_image = URI.open(image_url)
+    name = card.search(".product a").text.strip
 
     lens = Lens.new(
-      name: name,
-      lens_type: lens_type,
-      price: price,
-      location: location,
-      user: user,
-      camera: camera
+      {
+        name: name,
+        lens_type: lens_type,
+        price: rand(70..200),
+        location: city.sample,
+        user: User.all.sample,
+        camera: Camera.all.sample
+      }
     )
 
-    lens.image.attach(io: lens_image, filename: "#{name}.jpg")
+    lens.image.attach(io: URI.open(image_url), filename: "#{name}.jpg")
 
     lens.save!
 
-    puts "Lens nb #{lens_count} created "
+    puts "Lens nb #{lens_count} created"
 
     lens_count += 1
   end
-  puts ""
 end
 
-browser.close
+puts ""
+
 # ============================================
 
 puts "Database successfully filled !"
