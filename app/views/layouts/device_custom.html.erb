@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AirbnbCopycatTheFavorite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/javascript/application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body class="bg-primary">
+    <%= render "shared/flashes" %>
+    <div class="position-absolute top-0 start-50 translate-middle-x">
+      <%= link_to root_path  do %>
+        <%= image_tag("airbnb-copyat-logo.svg", class: "pt-5", style: "filter: saturate(0%) brightness(200%) contrast(100%); width: 200px") %>
+      <% end %>
+    </div>
+    <div class="position-absolute top-50 start-50 translate-middle shadow-lg">
+      <div class="card p-5 bg-creme container">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

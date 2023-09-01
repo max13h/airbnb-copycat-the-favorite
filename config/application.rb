@@ -23,5 +23,13 @@ module AirbnbCopycatTheFavorite
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.to_prepare do
+      Devise::SessionsController.layout "device_custom"
+      Devise::RegistrationsController.layout "device_custom"
+      Devise::ConfirmationsController.layout "device_custom"
+      Devise::UnlocksController.layout "device_custom"
+      Devise::PasswordsController.layout "device_custom"
+    end
   end
 end
