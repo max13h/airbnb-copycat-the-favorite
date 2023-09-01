@@ -2,13 +2,14 @@
 
   <div class="position-relative d-flex mb-5">
     <div class="text container w-50">
-      <h1 class="mt-5 fw-bold mb-3">Lens Rental Marketplace - Monetize Your Lenses or Find the Perfect One!</h1>
+      <h1 class="mt-5 fw-bold mb-3">Lens Rental Marketplace</h1>
+      <h2>Monetize Your Lenses or Find the Perfect One!</h2>
       <p>Welcome to our Lens Rental Marketplace, where lens owners and photographers unite. Whether you're a lens owner looking to monetize your equipment or a photographer in need of the perfect lens, our platform connects you seamlessly for a rewarding rental experience.</p>
     </div>
     <div class="illustration me-5 d-flex justify-content-center align-items-center">
       <%= image_tag("lens-homepage.png", style: "width: 200px;", class: "me-5") %>
     </div>
   </div>
-  <%= link_to "Browse lenses", "/", class: "btn btn-primary fw-bold  fs-3" %>
+  <%= link_to "Browse lenses", lenses_path, class: "btn btn-primary fw-bold  fs-3" %>
 
 </div>
