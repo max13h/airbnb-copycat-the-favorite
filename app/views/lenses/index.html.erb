@@ -1,12 +1,8 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
-
   <h1>Lenses to rent</h1>
-  
+
   <div class="row">
-
-    <% @lenses.each do |lens| %>
-
+     <% @lenses.each do |lens| %>
       <%= link_to lense_path(lens), class: "col" do %>
         <div class="card" style="width: 18rem;">
           <%= cl_image_tag lens.image.key, crop: :fill %>
@@ -15,7 +11,26 @@
         </div>
       <% end %>
 
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lenses.each do |lens| %>
+      <tr>
+        <td><%= lens.name %></td>
+        <td><%= lens.type %></td>
+        <td><%= link_to 'Details', lens %></td>
+        <td><%= link_to 'Edit', edit_lense_path(lens) %></td>
+        <td><%= link_to 'Delete', lens, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
-  </div>
-  <%= link_to 'Add my Lens', new_lense_path %>
-</div>
+  </tbody>
+</table>
+
+<%= link_to 'Add my Lens', new_lense_path %>

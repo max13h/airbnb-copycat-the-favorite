@@ -11,19 +11,8 @@
   </head>
 
   <body>
-    <nav class="d-flex justify-content-between align-items-center py-2 px-2 global-navbar shadow-sm">
-      <%= image_tag("airbnb-copyat-logo.svg") %>
-      <%= form_with url: "/search", method: :get, class: "flex-grow-1 mx-5 d-flex justify-content-center align-items-center" do |form| %>
-        <%= form.text_field(:query, placeholder: 'Search for a lens', class: "w-100 rounded-pill py-1 px-2", style: "max-width: 500px") %>
-      <% end %>
-      <div class="d-flex justify-content-between align-items-center">
-        <%= link_to "Add my lens", '/', class: "btn btn-secondary me-5" %>
-        <div class="connect-btn me-3">
-          <%= link_to "Sign In", "/", class: "btn btn-primary fw-bold" %>
-          <%= link_to "Login", "/", class: "fw-bold" %>
-        </div>
-      </div>
-    </nav>
-      <%= yield %>
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
+    <%= yield %>
   </body>
 </html>

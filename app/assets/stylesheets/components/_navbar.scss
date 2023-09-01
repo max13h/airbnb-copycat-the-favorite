@@ -10,3 +10,21 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-airbnbcopycat {
+  display: flex;
+  width: 1280px;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: $cream-hover;
+  color: #000;
+}
+.nav-labels {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+}
