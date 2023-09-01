@@ -81,6 +81,10 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    bootstrap (5.3.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
+      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -142,9 +146,12 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.4-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.3)
+    popper_js (2.11.8)
     public_suffix (5.0.3)
     puma (5.6.7)
       nio4r (~> 2.0)
@@ -234,11 +241,13 @@ GEM
     zeitwerk (2.6.11)
 
 PLATFORMS
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
+  bootstrap (~> 5.0)
   capybara
   debug
   dotenv-rails
