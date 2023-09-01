@@ -1,36 +1,19 @@
 <div class="container">
-  <h1>Lenses to rent</h1>
+  <h1 class="">Lenses to rent</h1>
 
-  <div class="row">
-     <% @lenses.each do |lens| %>
-      <%= link_to lense_path(lens), class: "col" do %>
-        <div class="card" style="width: 18rem;">
-          <%= cl_image_tag lens.image.key, crop: :fill %>
-          <h5 class="card-title fw-bold"><%= lens.name %></h5>
-          <p class="card-text"><%= lens.lens_type %></p>
+<div class="row gy-5 gx-5">
+  <% @lenses.each do |lens| %>
+    <%= link_to lense_path(lens), class: "col" do %>
+      <div class="lens-card shadow-sm">
+        <%= cl_image_tag lens.image.key, crop: :fill, class: "object-fit-fill w-100 p-3" %>
+        <h5 class="card-title fw-bold"><%= lens.name %></h5>
+        <div class="lens-details">
+        <p class="card-text"><%= lens.lens_type %></p>
+        <p class="card-text"><%= "#{lens.price}€" %></p>
         </div>
-      <% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @lenses.each do |lens| %>
-      <tr>
-        <td><%= lens.name %></td>
-        <td><%= lens.type %></td>
-        <td><%= link_to 'Details', show_lense_path(lens) %></td>
-        <td><%= link_to 'Edit', edit_lense_path(lens) %></td>
-        <td><%= link_to 'Delete', lens, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+</div>
+
 
 <%= link_to 'Add my Lens', new_lense_path %>
