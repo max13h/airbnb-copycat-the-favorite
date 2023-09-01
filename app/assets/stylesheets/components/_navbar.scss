@@ -1,30 +1,47 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
+
+// .navbar-lewagon .navbar-collapse {
+//   flex-grow: 0;
+// }
+
+// .navbar-lewagon .navbar-brand img {
+//   width: 40px;
+// }
+
+// .navbar-airbnbcopycat {
+//   display: flex;
+//   width: 1280px;
+//   height: 80px;
+//   justify-content: center;
+//   align-items: center;
+//   flex-shrink: 0;
+//   background-color: $cream-hover;
+//   color: #000;
+// }
+// .nav-labels {
+//   font-family: Montserrat;
+//   font-size: 14px;
+//   font-style: normal;
+//   font-weight: 700;
+//   line-height: 22px;
+// }
+
+.dropdown-menu {
+  background-color: white;
+  border: none ;
+  border-radius: 15px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.hover-effect {
+  transition: transform 0s;
+  transform: rotate(0deg);
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
+.hover-effect:hover {
+  transform: rotate(360deg);
 
-.navbar-airbnbcopycat {
-  display: flex;
-  width: 1280px;
-  height: 80px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  background-color: $cream-hover;
-  color: #000;
-}
-.nav-labels {
-  font-family: Montserrat;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 22px;
+  transition: all 0.3s ease;
 }
