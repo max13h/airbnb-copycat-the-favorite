@@ -1,7 +1,6 @@
 require "open-uri"
 require "nokogiri"
 require "faker"
-require "watir"
 
 u = User.count
 l = Lens.count
