@@ -5,8 +5,9 @@ require "faker"
 u = User.count
 l = Lens.count
 c = Camera.count
+b = Booking.count
 
-puts "There is #{u} users, #{l} lenses and #{c} cameras in you database"
+puts "There is #{u} users, #{l} lenses, #{b} bookings and #{c} cameras in you database"
 puts "Do you want to continue (y/n)"
 input = gets.chomp
 
@@ -67,6 +68,7 @@ city = ["London", "Paris", "Madrid", "Berlin"]
 lens_count = 1
 
 lenses_type.each do |lens_type|
+  puts ""
   puts "Lenses of type #{lens_type}"
   puts ""
 
@@ -102,7 +104,33 @@ lenses_type.each do |lens_type|
   end
 end
 
+# ============================================
+
 puts ""
+
+# Create bookings # =============================
+
+rand(30..40).times do
+  def create_samples
+    lens = Lens.all.sample
+    owner = lens.user
+
+    customer = User.all.sample
+
+    return create_samples if owner == customer
+
+    return [lens, customer]
+  end
+
+  lens, customer = create_samples
+
+  Booking.create!(
+    lens:,
+    user: customer,
+    start_date: Faker::Date.between_except(from: Date.today, to: 2.weeks.from_now, excepted: Date.today),
+    end_date: Faker::Date.between(from: 2.weeks.from_now, to: 4.weeks.from_now)
+  )
+end
 
 # ============================================
 
