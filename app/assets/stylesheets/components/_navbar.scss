@@ -45,3 +45,18 @@
 
   transition: all 0.3s ease;
 }
+
+.navbar-label {
+  color: #000;
+  text-align: right;
+  /* montserrat/bold/label */
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+
+  & :hover {
+    color: #E48900
+  }
+}
