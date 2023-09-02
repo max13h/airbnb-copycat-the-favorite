@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings
   def index
+    @past_bookings = Booking.where(user: current_user).where('end_date < ?', Date.today)
     @bookings = Booking.all
   end
 
