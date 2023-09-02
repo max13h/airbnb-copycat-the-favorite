@@ -2,19 +2,29 @@
 
 <div class="lens-details">
   <div class="detail">
-    <strong>Name:</strong> <%= @lens.name %>
+    <p>
+      <strong>Name:</strong> <%= @lens.name %>
+    </p>
   </div>
   <div class="detail">
-    <strong>Type:</strong> <%= @lens.lens_type %>
+    <p>
+      <strong>Type:</strong> <%= @lens.lens_type %>
+    </p>
   </div>
   <div class="detail">
-    <strong>Price:</strong> <%= number_to_currency(@lens.price, unit: '€') %>
+    <p>
+      <strong>Price:</strong> <%= number_to_currency(@lens.price, unit: '€') %>
+    </p>
   </div>
   <div class="detail">
-    <strong>Owner:</strong> <%= @lens.user.name %>
+    <p>
+      <strong>Owner: </strong> <%= @lens.user.first_name %> <%= @lens.user.last_name %>
+    </p>
   </div>
   <div class="detail">
-    <strong>Camera compatibility:</strong> <%= @lens.camera.name %>
+    <p>
+      <strong>Camera compatibility: </strong><%= @lens.camera.brand %> <%= @lens.camera.model %>
+    </p>
   </div>
 </div>
 

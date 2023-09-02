@@ -22,6 +22,19 @@ Camera.destroy_all
 puts "Database empty"
 puts ""
 
+# Create users # =============================
+user_count = 1
+rand(10..15).times do
+  User.create!(email: Faker::Internet.email, password: Faker::Internet.password, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
+
+  puts "User nb #{user_count} created "
+
+  user_count += 1
+end
+# ============================================
+
+puts ""
+
 # Create cameras ======================
 camera_url = "https://www.borrowlenses.com/rent/category/rentalgear/cameras?q=%3AmostPopular%3Acategory%3Acameras&text=&clearBrands="
 
@@ -30,11 +43,11 @@ camera_html_doc = Nokogiri::HTML.parse(camera_html_file)
 camera_count = 1
 random_nb = rand(5..8)
 
-camera_html_doc.search(".card").each do |element|
+camera_html_doc.search("#matchingProducts .card").each do |element|
   break if camera_count == random_nb
 
   camera_brand = element.search(".overline").text.capitalize
-  camera_model_raw = element.search(".product a").text.split(' ').reject {|e| e.capitalize == camera_brand}
+  camera_model_raw = element.search(".product a").text.split.reject { |e| e.capitalize == camera_brand }
   camera_model = camera_model_raw.join(" ")
 
   Camera.create!(brand: camera_brand, model: camera_model)
@@ -42,19 +55,6 @@ camera_html_doc.search(".card").each do |element|
   puts "Camera nb #{camera_count} created "
 
   camera_count += 1
-end
-# ============================================
-
-puts ""
-
-# Create users # =============================
-user_count = 1
-rand(6..10).times do
-  User.create!(email: Faker::Internet.email, password: Faker::Internet.password, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name)
-
-  puts "User nb #{user_count} created "
-
-  user_count += 1
 end
 # ============================================
 
