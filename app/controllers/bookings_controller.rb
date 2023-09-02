@@ -3,8 +3,6 @@ class BookingsController < ApplicationController
 
   # GET /bookings
   def index
-    @past_bookings = Booking.where(user: current_user).where('end_date < ?', Date.today)
-    @bookings = Booking.all
   end
 
   # GET /bookings/1
@@ -31,7 +29,8 @@ class BookingsController < ApplicationController
 
   # PATCH/PUT /bookings/1
   def update
-    if @booking.update(booking_params)
+    @booking.update!(is_accepted: true)
+    if @booking.save!
       redirect_to @booking, notice: 'Booking is validated by the owner.'
     else
       render :edit

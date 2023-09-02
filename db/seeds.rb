@@ -94,7 +94,7 @@ lenses_type.each do |lens_type|
         lens_type:,
         price: rand(70..200),
         location: city.sample,
-        user: User.all.sample,
+        user: User.where.not(email: default_user.email).sample,
         camera: Camera.all.sample
       }
     )
@@ -109,6 +109,16 @@ lenses_type.each do |lens_type|
   end
 end
 
+puts ""
+puts "Assigning lenses to default user"
+puts ""
+
+rand(3..5).times do
+  default_user_lens = Lens.where(location: "Paris").sample
+  default_user_lens.user = default_user
+  default_user_lens.save!
+end
+
 # ============================================
 
 puts ""
@@ -116,18 +126,18 @@ puts ""
 # Create bookings # =============================
 
 rand(30..40).times do
-  def create_samples
+  def create_samples(default_user)
     lens = Lens.all.sample
     owner = lens.user
 
     customer = User.all.sample
 
-    return create_samples if owner == customer
+    return create_samples(default_user) if owner == customer || customer == default_user
 
     return [lens, customer]
   end
 
-  lens, customer = create_samples
+  lens, customer = create_samples(default_user)
 
   Booking.create!(
     lens:,
