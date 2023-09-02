@@ -5,8 +5,9 @@ require "faker"
 u = User.count
 l = Lens.count
 c = Camera.count
+b = Booking.count
 
-puts "There is #{u} users, #{l} lenses and #{c} cameras in you database"
+puts "There is #{u} users, #{l} lenses, #{b} bookings and #{c} cameras in you database"
 puts "Do you want to continue (y/n)"
 input = gets.chomp
 
@@ -15,6 +16,7 @@ return unless input == "y" || input == "Y"
 puts "Clear database..."
 puts ""
 
+Booking.destroy_all
 Lens.destroy_all
 User.destroy_all
 Camera.destroy_all
@@ -31,6 +33,12 @@ rand(10..15).times do
 
   user_count += 1
 end
+
+puts ""
+
+puts "Creating default user"
+
+default_user = User.create!(email: "default@gmail.com", password: 1234567890, first_name: "Default", last_name: "User")
 # ============================================
 
 puts ""
@@ -41,7 +49,7 @@ camera_url = "https://www.borrowlenses.com/rent/category/rentalgear/cameras?q=%3
 camera_html_file = URI.open(camera_url).read
 camera_html_doc = Nokogiri::HTML.parse(camera_html_file)
 camera_count = 1
-random_nb = rand(5..8)
+random_nb = rand(8..10)
 
 camera_html_doc.search("#matchingProducts .card").each do |element|
   break if camera_count == random_nb
@@ -58,8 +66,6 @@ camera_html_doc.search("#matchingProducts .card").each do |element|
 end
 # ============================================
 
-puts ""
-
 # Create lenses # =============================
 
 lenses_type = ["Wide", "Normal", "Ultrawide", "Macro"]
@@ -67,6 +73,7 @@ city = ["London", "Paris", "Madrid", "Berlin"]
 lens_count = 1
 
 lenses_type.each do |lens_type|
+  puts ""
   puts "Lenses of type #{lens_type}"
   puts ""
 
@@ -83,8 +90,8 @@ lenses_type.each do |lens_type|
 
     lens = Lens.new(
       {
-        name: name,
-        lens_type: lens_type,
+        name:,
+        lens_type:,
         price: rand(70..200),
         location: city.sample,
         user: User.all.sample,
@@ -102,8 +109,65 @@ lenses_type.each do |lens_type|
   end
 end
 
-puts ""
-
 # ============================================
 
+puts ""
+
+# Create bookings # =============================
+
+rand(30..40).times do
+  def create_samples
+    lens = Lens.all.sample
+    owner = lens.user
+
+    customer = User.all.sample
+
+    return create_samples if owner == customer
+
+    return [lens, customer]
+  end
+
+  lens, customer = create_samples
+
+  Booking.create!(
+    lens:,
+    user: customer,
+    start_date: Faker::Date.between_except(from: Date.today, to: 2.weeks.from_now, excepted: Date.today),
+    end_date: Faker::Date.between(from: 2.weeks.from_now, to: 4.weeks.from_now)
+  )
+end
+
+# =====
+
+puts "Creating bookings for default user"
+puts ""
+puts "Past"
+rand(6..10).times do
+  Booking.create!(
+    lens: Lens.where(location: "Paris").sample,
+    user: default_user,
+    start_date: Faker::Date.between(from: 5.weeks.ago, to: 4.weeks.ago),
+    end_date: Faker::Date.between(from: 3.weeks.ago, to: 1.weeks.from_now)
+  )
+end
+
+puts ""
+puts "Future"
+rand(6..10).times do
+  Booking.create!(
+    lens: Lens.where(location: "London").sample,
+    user: default_user,
+    start_date: Faker::Date.between(from: 2.weeks.from_now, to: 3.weeks.from_now),
+    end_date: Faker::Date.between(from: 4.weeks.from_now, to: 5.weeks.from_now)
+  )
+end
+
+# ============================================
+puts ""
+
 puts "Database successfully filled !"
+puts ""
+puts "DEFAULT USER =========="
+puts "email: #{default_user.email}"
+puts "password: 1234567890"
+puts "===================="
