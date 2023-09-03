@@ -18,3 +18,13 @@
 a {
   text-decoration: none;
 }
+
+.btn-cream {
+  background-color: $cream;
+  border-radius: $border-radius;
+  font-weight: 700;
+
+  &:hover {
+    outline: 2px solid $cream;
+  }
+}
