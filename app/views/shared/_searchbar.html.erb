@@ -1,6 +1,16 @@
-<%= form_with url: lenses_path, method: :get, class: "flex-grow-1 mx-5 d-flex justify-content-center align-items-center rounded-pill py-1 px-2 bg-white w-100", style: "max-width: 500px " do |form| %>
-  <%= form.text_field(:query, placeholder: "Search for a lens") %>
-  <%= form.select :camera, Camera.all.map { |camera| [camera.brand, camera.model].join(' ') }, { prompt: "Select a camera" }  %>
+<%= form_with url: lenses_path, method: :get, class: "flex-grow-1 d-flex justify-content-center fs-6" do |form| %>
+  <div class="rounded-pill bg-white d-inline-block ps-5 pe-2 py-0">
+    <span class="after-input">
+      <%= form.text_field(:query, placeholder: "Search a lens", class: "searchbar-input-text") %>
+    </span>
+    <span class="after-input">
+      <%= form.text_field(:query, placeholder: "In which city ?", class: "searchbar-input-text") %>
+    </span>
+    <span class="after-input">
+      <%= form.select(:camera, Camera.all.map { |camera| [camera.brand, camera.model].join(' ') }, {prompt: "Select a camera"}, { class: "searchbar-select-input" }) %>
+    </span>
+    <button type="submit" class="ri-search-line searchbar-submit-input fs-4 ms-1"></button>
+  </div>
 
 
 
