@@ -3,7 +3,12 @@ class LensesController < ApplicationController
 
   # GET /lenses
   def index
-    @lenses = Lens.all
+    query = "#{params[:lens]} #{params[:city]} #{params[:camera]}".strip
+    if query.empty?
+      @lenses = Lens.all
+    else
+      @lenses = Lens.search_by_model_location_and_camera(query)
+    end
   end
 
   # GET /lenses/1

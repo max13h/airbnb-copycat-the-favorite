@@ -11,9 +11,12 @@ class Lens < ApplicationRecord
 
   include PgSearch::Model
 
-  pg_search_scope :search_by_title_and_synopsis,
-  against: [ :title, :synopsis ],
+  pg_search_scope :search_by_model_location_and_camera,
+  against: [ :name, :location ],
+  associated_against: {
+    camera: [ :model, :brand ]
+  },
   using: {
-    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    tsearch: { prefix: true }
   }
 end

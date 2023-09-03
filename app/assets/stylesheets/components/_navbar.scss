@@ -79,23 +79,17 @@
 .searchbar-submit-input {
   background: none;
   border: none;
+
+  &:hover {
+    color: $primary
+  }
 }
 
 .after-input {
   position: relative;
-  &:before {
-    content: "";
-    display: block;
-    width: 90%;
-    height: 2px;
-    border-radius: 15px;
-    background-color: $primary;
-    opacity: 0.3;
-    position: absolute;
-    bottom: -4px;
-    left: 0;
+
+  &:focus-within label {
+    color: $primary
   }
-  &:focus-within::before {
-    opacity: 1;
-  }
+
 }
