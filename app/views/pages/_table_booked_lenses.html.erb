@@ -1,0 +1,15 @@
+<% all_pending_booked_lenses.each do |booking| %>
+  <div class="d-flex justify-content-between align-items-center p-3 border-bottom-3 border-dark mb-2">
+    <div>
+      <%= cl_image_tag booking.lens.image.key, crop: :fill, style: "width: 50px" %>
+      <span class=" ms-3 me-3 fw-bold d-inline-block text-truncate" style="display: inline-block; width: 8rem" ><%= booking.lens.name %></span>
+    </div>
+    <div>
+      <span><%= booking.start_date.strftime("%d/%m/%Y") %> - <%= booking.end_date.strftime("%d/%m/%Y") %></span>
+    </div>
+    <div class="fs-4">
+      <%= link_to "", booking_path(booking), data: { turbo_method: :patch, turbo_confirm: "Confirm accept this booking ?" }, class: "ri-check-line"%>
+      <%= link_to "", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Deny accept this booking ?" }, class: "ri-close-line"%>
+    </div>
+  </div>
+<% end %>
