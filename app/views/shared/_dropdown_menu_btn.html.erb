@@ -1,13 +1,12 @@
 <div id="navbarSupportedContent">
   <div class="navbar-nav me-auto ">
 
-    <div class="fs-4 dropdown-menu-btn bg-white rounded-pill px-3 py-0" id="navbarDropdown" data-bs-toggle="dropdown", aria-haspopup="true" aria-expanded="false">
+    <div class="fs-4 dropdown-menu-btn bg-white rounded-pill px-3 py-0 " id="navbarDropdown" data-bs-toggle="dropdown", aria-haspopup="true" aria-expanded="false">
       <i class="ri-menu-line"></i>
       <i class="ri-user-smile-line hover-effect"></i>
     </div>
     <div class="user-select-none dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
       <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
-      <%= link_to "Profil", "#", class: "dropdown-item" %>
       <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
     </div>
   </div>

@@ -7,7 +7,7 @@
 
   <div class="d-flex justify-content-center align-items-center me-5">
     <% if user_signed_in? %>
-      <%= render "/shared/menu_nav" %>
+      <%= render "/shared/dropdown_menu_btn" %>
     <% else %>
     <%= link_to "Add my lens", '/', class: "navbar-label" %>
       <div class="connect-btn me-3">
