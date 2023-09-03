@@ -1,0 +1,17 @@
+<%= form_with url: lenses_path, method: :get, class: "flex-grow-1 d-flex justify-content-center fs-6" do |form| %>
+  <div class="rounded-pill bg-white d-inline-block ps-5 pe-2 py-0">
+    <span class="after-input">
+      <label class="ri-camera-lens-line fs-5" for="lens"></label>
+      <%= form.text_field(:lens, placeholder: "A lens model idea ?", name: "lens", class: "searchbar-input-text") %>
+    </span>
+    <span class="after-input">
+      <label class="ri-map-pin-line fs-5" for="city"></label>
+      <%= form.text_field(:city, placeholder: "In which city are you ?", class: "searchbar-input-text", name: "city") %>
+    </span>
+    <span class="after-input">
+      <label class="ri-camera-line fs-5" for="camera"></label>
+      <%= form.select(:camera, Camera.all.map { |camera| [camera.brand, camera.model].join(' ') }, {prompt: "Select a camera"}, { class: "searchbar-select-input", name: "camera" }) %>
+    </span>
+    <button type="submit" class="ri-search-line searchbar-submit-input fs-4 ms-1"></button>
+  </div>
+<% end %>
