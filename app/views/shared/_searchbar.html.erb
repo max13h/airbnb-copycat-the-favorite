@@ -1,0 +1,7 @@
+<%= form_with url: lenses_path, method: :get, class: "flex-grow-1 mx-5 d-flex justify-content-center align-items-center rounded-pill py-1 px-2 bg-white w-100", style: "max-width: 500px " do |form| %>
+  <%= form.text_field(:query, placeholder: "Search for a lens") %>
+  <%= form.select :camera, Camera.all.map { |camera| [camera.brand, camera.model].join(' ') }, { prompt: "Select a camera" }  %>
+
+
+
+<% end %>

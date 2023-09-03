@@ -38,13 +38,13 @@
 .hover-effect {
   transition: transform 0s;
   transform: rotate(0deg);
+
+    &:hover {
+      transform: rotate(360deg);
+      transition: all 0.3s ease;
+    }
 }
 
-.hover-effect:hover {
-  transform: rotate(360deg);
-
-  transition: all 0.3s ease;
-}
 
 .navbar-label {
   color: #000;

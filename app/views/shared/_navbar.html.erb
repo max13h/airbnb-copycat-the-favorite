@@ -3,9 +3,7 @@
     <%= image_tag("airbnb-copyat-logo.svg") %>
   <% end %>
 
-  <%= form_with url: "/search", method: :get, class: "flex-grow-1 mx-5 d-flex justify-content-center align-items-center" do |form| %>
-    <%= form.text_field(:query, placeholder: 'Search for a lens', class: "w-100 rounded-pill py-1 px-2", style: "max-width: 500px") %>
-  <% end %>
+  <%= render "/shared/searchbar" %>
 
   <div class="d-flex justify-content-center align-items-center me-5">
     <% if user_signed_in? %>
