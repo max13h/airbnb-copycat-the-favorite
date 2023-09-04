@@ -8,8 +8,6 @@ class PagesController < ApplicationController
     @lenses_city = Lens.where(location: @city).shuffle
     @lenses_camera = Lens.where(camera: @camera).shuffle
 
-
-
     @lenses = []
 
     10.times do
@@ -24,7 +22,6 @@ class PagesController < ApplicationController
     @past_bookings = @bookings_on_past.sort_by(&:end_date).first(2)
 
     @all_pending_booked_lenses = Booking.where(user: current_user).where(is_accepted: false).sort_by(&:start_date).first(5)
-
   end
 
   private
