@@ -2,6 +2,19 @@ class PagesController < ApplicationController
   # skip_before_action :authenticate_user!, only: :home
 
   def home
+    @type, @city, @camera = homepage_sections
+
+    @lenses_type = Lens.where(lens_type: @type).shuffle
+    @lenses_city = Lens.where(location: @city).shuffle
+    @lenses_camera = Lens.where(camera: @camera).shuffle
+
+
+
+    @lenses = []
+
+    10.times do
+      @lenses << Lens.all.sample
+    end
   end
 
   def dashboard
@@ -12,5 +25,15 @@ class PagesController < ApplicationController
 
     @all_pending_booked_lenses = Booking.where(user: current_user).where(is_accepted: false).sort_by(&:start_date).first(5)
 
+  end
+
+  private
+
+  def homepage_sections
+    type = ["Wide", "Normal", "Ultrawide", "Macro"].sample
+    city = ["London", "Paris", "Madrid", "Berlin"].sample
+    camera = Camera.all.sample
+
+    return [type, city, camera]
   end
 end
