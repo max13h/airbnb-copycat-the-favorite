@@ -12,7 +12,9 @@ class LensesController < ApplicationController
   end
 
   # GET /lenses/1
-  def show; end
+  def show
+    @lens = Lens.find(params[:id])
+  end
 
   # GET /lenses/new
   def new
