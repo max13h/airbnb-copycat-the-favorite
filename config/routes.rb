@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :destroy, :update]
   get "dashboard", to: "pages#dashboard"
   get "users/:id/lenses", to: "users#lenses", as: "user_lenses"
+  get "details", to: "lenses#show", as: :lenses/:id
 end
