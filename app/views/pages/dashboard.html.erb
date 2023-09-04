@@ -10,7 +10,7 @@
     <% unless @future_bookings.empty? %>
       <div>
         <h2 class="fw-bold fs-4">Your current or future bookings:</h2>
-        <%= render "table_bookings", bookings: @future_bookings %>
+        <%= render "pages/shared/table_bookings", bookings: @future_bookings %>
         <% if @bookings_on_future.count > 3  %>
           <span class="fs-4">...</span>
         <% end %>
@@ -20,7 +20,7 @@
       </div>
       <div>
         <h2 class="fw-bold fs-4">Your history of bookings:</h2>
-        <%= render "table_bookings", bookings: @past_bookings %>
+        <%= render "pages/shared/table_bookings", bookings: @past_bookings %>
         <% if @bookings_on_past.count > 3  %>
           <span class="fs-4">...</span>
         <% end %>
@@ -39,7 +39,7 @@
   <div class="lenses dashboard-card position-relative">
     <% unless @all_pending_booked_lenses.empty? %>
       <h2 class="fw-bold fs-4">Your lenses have been booked:</h2>
-      <%= render "table_booked_lenses", all_pending_booked_lenses: @all_pending_booked_lenses %>
+      <%= render "pages/shared/table_booked_lenses", all_pending_booked_lenses: @all_pending_booked_lenses %>
       <div class="w-100 d-flex justify-content-center">
         <%= link_to "All lenses", user_lenses_path(current_user.id), class: "btn
         btn-outline-primary fw-bold" %>

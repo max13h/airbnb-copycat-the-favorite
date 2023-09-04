@@ -23,26 +23,15 @@
   }
 }
 
-
-
-.navbar-label {
-  color: #000;
-  text-align: right;
-  /* montserrat/bold/label */
-  font-family: Montserrat;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 22px;
-
-  & :hover {
-    color: #E48900
-  }
-}
-
 .dropdown-menu-btn {
   cursor: pointer ;
   user-select: none;
+}
+
+.dropdown-item:hover {
+  color: white;
+  font-weight: bolder;
+  background-color: $primary;
 }
 
 .searchbar-input-text {

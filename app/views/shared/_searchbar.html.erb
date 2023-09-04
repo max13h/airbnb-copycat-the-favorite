@@ -1,5 +1,5 @@
 <%= form_with url: lenses_path, method: :get, class: "flex-grow-1 d-flex justify-content-center fs-6" do |form| %>
-  <div class="rounded-pill bg-white d-inline-block ps-5 pe-2 py-0">
+  <div class="shadow-sm rounded-pill bg-white d-inline-block ps-5 pe-2 py-0">
     <span class="after-input">
       <label class="ri-camera-lens-line fs-5" for="lens"></label>
       <%= form.text_field(:lens, placeholder: "A lens model idea ?", name: "lens", class: "searchbar-input-text") %>

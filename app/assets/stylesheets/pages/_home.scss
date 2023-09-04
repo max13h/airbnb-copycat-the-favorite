@@ -1,8 +1,103 @@
 // Specific CSS for your home-page
 .homepage-banner {
-  height: 90vh;
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  background-color: $orange;
+  background-image: url("landing_page_illustration.png");
+  background-position: center;
+  background-size: cover;
 }
 
 .homepage-banner-content {
-  color: $cream
+  color: $cream;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+
+  h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    text-shadow:  0 .125rem .25rem rgba($black, .075);
+
+    .second_part {
+      padding-left: 2rem;
+    }
+  }
+
+  .btn-cream {
+    padding: 1rem;
+    margin-left: 6rem;
+  }
+}
+
+.lenses_section {
+  padding: 5rem 12rem;
+  border: none !important;
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
+  h2 {
+    font-weight: 700;
+  }
+}
+
+.trusted-banner {
+  padding: 5rem 0px;
+
+  h2 {
+    font-weight: bolder;
+    font-size: 3rem;
+    span {
+      padding-left: 2rem;
+    }
+  }
+  .btn {
+    margin-left: 5rem;
+    margin-top: 2rem;
+  }
+}
+
+
+
+.homepage-transition-1 {
+  width: 100%;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='200' preserveAspectRatio='none' viewBox='0 0 1440 200'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1055%26quot%3b)' fill='none'%3e%3crect width='1440' height='200' x='0' y='0' fill='rgba(228%2c 137%2c 0%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c21 C 96%2c34.8 288%2c86.4 480%2c90 C 672%2c93.6 768%2c39.4 960%2c39 C 1152%2c38.6 1344%2c78.2 1440%2c88L1440 200L0 200z' fill='rgba(232%2c 174%2c 88%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c130 C 48%2c138 144%2c167.8 240%2c170 C 336%2c172.2 384%2c136.4 480%2c141 C 576%2c145.6 624%2c191.4 720%2c193 C 816%2c194.6 864%2c149 960%2c149 C 1056%2c149 1104%2c196.2 1200%2c193 C 1296%2c189.8 1392%2c145 1440%2c133L1440 200L0 200z' fill='rgba(245%2c 241%2c 235%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1055'%3e%3crect width='1440' height='200' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+.homepage-transition-2 {
+  width: 100%;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='50' preserveAspectRatio='none' viewBox='0 0 1440 50'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1045%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c7 C 41.2%2c12.8 123.6%2c33.2 206%2c36 C 288.4%2c38.8 329.6%2c20.4 412%2c21 C 494.4%2c21.6 535.6%2c42.2 618%2c39 C 700.4%2c35.8 741.6%2c3 824%2c5 C 906.4%2c7 947.6%2c49.8 1030%2c49 C 1112.4%2c48.2 1154%2c1.2 1236%2c1 C 1318%2c0.8 1399.2%2c38.6 1440%2c48L1440 50L0 50z' fill='rgba(228%2c 137%2c 0%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1045'%3e%3crect width='1440' height='50' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+.homepage-transition-3 {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='50' preserveAspectRatio='none' viewBox='0 0 1440 50'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1049%26quot%3b)' fill='none'%3e%3crect width='1440' height='50' x='0' y='0' fill='rgba(228%2c 137%2c 0%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c7 C 41.2%2c14.4 123.6%2c44.2 206%2c44 C 288.4%2c43.8 329.6%2c6.2 412%2c6 C 494.4%2c5.8 535.6%2c42.6 618%2c43 C 700.4%2c43.4 741.6%2c6.8 824%2c8 C 906.4%2c9.2 947.6%2c47 1030%2c49 C 1112.4%2c51 1154%2c22 1236%2c18 C 1318%2c14 1399.2%2c26.8 1440%2c29L1440 50L0 50z' fill='rgba(245%2c 241%2c 235%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1049'%3e%3crect width='1440' height='50' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+.homepage-transition-4 {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='200' preserveAspectRatio='none' viewBox='0 0 1440 200'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1096%26quot%3b)' fill='none'%3e%3crect width='1440' height='200' x='0' y='0' fill='rgba(245%2c 241%2c 235%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c45 C 48%2c55.4 144%2c99.8 240%2c97 C 336%2c94.2 384%2c35.8 480%2c31 C 576%2c26.2 624%2c72.4 720%2c73 C 816%2c73.6 864%2c31.2 960%2c34 C 1056%2c36.8 1104%2c88.6 1200%2c87 C 1296%2c85.4 1392%2c38.2 1440%2c26L1440 200L0 200z' fill='rgba(232%2c 174%2c 88%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c103 C 41.2%2c116.8 123.6%2c167.8 206%2c172 C 288.4%2c176.2 329.6%2c124 412%2c124 C 494.4%2c124 535.6%2c173.6 618%2c172 C 700.4%2c170.4 741.6%2c117 824%2c116 C 906.4%2c115 947.6%2c163 1030%2c167 C 1112.4%2c171 1154%2c131.2 1236%2c136 C 1318%2c140.8 1399.2%2c180 1440%2c191L1440 200L0 200z' fill='rgba(228%2c 137%2c 0%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1096'%3e%3crect width='1440' height='200' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+.homepage-transition-5 {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 150px;
+  background-position: center;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='100' preserveAspectRatio='none' viewBox='0 0 1440 100'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1121%26quot%3b)' fill='none'%3e%3crect width='1440' height='100' x='0' y='0' fill='rgba(228%2c 137%2c 0%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c53 C 48%2c46.6 144%2c17.6 240%2c21 C 336%2c24.4 384%2c73 480%2c70 C 576%2c67 624%2c5 720%2c6 C 816%2c7 864%2c73.4 960%2c75 C 1056%2c76.6 1104%2c17.6 1200%2c14 C 1296%2c10.4 1392%2c48.4 1440%2c57L1440 100L0 100z' fill='rgba(0%2c 0%2c 0%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1121'%3e%3crect width='1440' height='100' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
 }

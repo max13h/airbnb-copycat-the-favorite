@@ -1,0 +1,10 @@
+<%= link_to lense_path(lens), class: "col" do %>
+  <div class="lens-card shadow-sm">
+    <%= cl_image_tag lens.image.key, crop: :fill, class: "object-fit-fill w-100 p-3" %>
+    <h5 class="card-title fw-bold"><%= lens.name %></h5>
+    <div class="lens-details">
+      <p class="card-text"><%= lens.lens_type %></p>
+      <p cl ass="card-text"><%= "#{lens.price}€" %></p>
+    </div>
+  </div>
+<% end %>

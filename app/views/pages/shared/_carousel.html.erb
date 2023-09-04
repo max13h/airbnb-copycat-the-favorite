@@ -1,0 +1,9 @@
+<div class="overflow-x-scroll container d-flex rounded py-3">
+  <% lenses.each do |lens| %>
+    <div class="me-3">
+      <%= render "shared/lens_card", lens: lens, class: "width-" %>
+
+    </div>
+
+  <% end %>
+</div>
