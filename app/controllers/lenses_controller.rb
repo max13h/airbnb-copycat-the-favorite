@@ -27,12 +27,8 @@ class LensesController < ApplicationController
   # POST /lenses
   def create
     @lens = Lens.new(lens_params)
-
-    if @lens.save
-      redirect_to lens_path(@lens), notice: 'Lens was successfully added.'
-    else
-      render :new
-    end
+    @lens.save
+    redirect_to lens_details_path(@lens), notice: 'Lens was successfully added.'
   end
 
   # PATCH/PUT /lens/1
