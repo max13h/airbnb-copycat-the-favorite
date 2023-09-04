@@ -1,0 +1,17 @@
+<div class="trusted-banner d-flex justify-content-evenly">
+  <div class="d-flex flex-column align-items-start">
+    <h2>Become part of the <br><span>community</span></h2>
+
+    <% if current_user %>
+      <%= link_to "Post a review", "https://www.trustpilot.com", class: "btn btn-primary fw-bold" %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary fw-bold"%>
+    <% end %>
+  </div>
+
+
+  <div class="d-flex flex-column align-items-center">
+    <h3>Trustpilot</h3>
+    <%= image_tag "https://cdn.trustpilot.net/brand-assets/4.1.0/stars/stars-4.5.svg", style: "width: 300px" %>
+  </div>
+</div>
