@@ -5,6 +5,38 @@
     <%= link_to "Browse lenses", lenses_path, class: "btn btn-cream mt-5" %>
   </div>
 </div>
-<div class="home-bg-transition"></div>
+
+<div class="homepage-transition-1"></div>
+
+<div class="lenses_section" id="style-2">
+  <h2><i class="ri-camera-lens-fill"></i> Discover lenses of type <%= @type %></h2>
+  <%= render "pages/shared/carousel", lenses: @lenses_type %>
+</div>
+
+
+
+<div class="homepage-transition-2"></div>
+
+<div class="bg-primary">
+  <div class="lenses_section">
+    <h2 class="text-white"><i class="ri-map-pin-2-fill"></i> Browse lenses from <%= @city %></h2>
+    <%= render "pages/shared/carousel", lenses: @lenses_city %>
+  </div>
+</div>
+
+<div class="homepage-transition-3"></div>
+
+<div class="lenses_section">
+  <h2> <i class="ri-camera-2-fill"></i> If you have the camera <%= @camera.brand %> <%= @camera.model %></h2>
+  <%= render "pages/shared/carousel", lenses: @lenses_camera %>
+</div>
+
+<div class="homepage-transition-4"></div>
 
 <%= render "pages/shared/trusted_banner" %>
+
+<div class="homepage-transition-5"></div>
+
+<footer>
+
+</footer>

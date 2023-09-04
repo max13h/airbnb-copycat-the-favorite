@@ -6,14 +6,6 @@
   <%= render "/shared/searchbar" %>
 
   <div class="d-flex justify-content-center align-items-center me-5">
-    <% if user_signed_in? %>
-      <%= render "/shared/dropdown_menu_btn" %>
-    <% else %>
-    <%= link_to "Add my lens", '/', class: "navbar-label" %>
-      <div class="connect-btn me-3">
-        <%= link_to "Sign Up", new_user_registration_path, class: "navbar-label" %>
-        <%= link_to "Login", new_user_session_path, class: "navbar-label" %>
-      </div>
-    <% end %>
+    <%= render "/shared/dropdown_menu_btn" %>
   </div>
 </nav>
