@@ -19,15 +19,19 @@ class BookingsController < ApplicationController
 
   # POST /bookings
   def create
-    @booking = Booking.new(booking_params)
-    @booking.user = current_user
-
-    if @booking.save!
-      redirect_to booking_path(@booking), notice: 'Booking request was successfully send to the owner.'
-    else
+    if params[:booking][:start_date].empty? || params[:booking][:end_date].empty?
       @lens = Lens.find(params[:booking][:lens_id].to_i)
       @booking = Booking.new
       render "lenses/show", status: :unprocessable_entity
+    else
+      @booking = Booking.new(booking_params)
+      @booking.user = current_user
+
+      if @booking.save!
+        redirect_to booking_path(@booking), notice: 'Booking request was successfully send to the owner.'
+      else
+        render "lenses/show", status: :unprocessable_entity
+      end
     end
   end
 

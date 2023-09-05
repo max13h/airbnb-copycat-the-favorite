@@ -6,7 +6,7 @@
 </div>
 
 <div class="dashboard">
-  <div class=" dashboard-card bookings position-relative">
+  <div class=" dashboard-card shadow rounded bookings position-relative">
     <% unless @future_bookings.empty? %>
       <div>
         <h2 class="fw-bold fs-4">Your current or future bookings:</h2>
@@ -36,7 +36,7 @@
     <% end %>
 
   </div>
-  <div class="lenses dashboard-card position-relative">
+  <div class="lenses dashboard-card shadow rounded position-relative">
     <% unless @all_pending_booked_lenses.empty? %>
       <h2 class="fw-bold fs-4">Your lenses have been booked:</h2>
       <%= render "pages/shared/table_booked_lenses", all_pending_booked_lenses: @all_pending_booked_lenses %>

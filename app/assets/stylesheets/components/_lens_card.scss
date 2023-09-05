@@ -4,6 +4,12 @@
   border-radius: 15px;
   padding: 1rem;
   box-shadow: 2px 2px 5px black;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 }
 
 .lens-card .lens-details {
