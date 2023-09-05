@@ -12,7 +12,9 @@ class LensesController < ApplicationController
   end
 
   # GET /lenses/1
-  def show; end
+  def show
+    @lens = Lens.find(params[:id])
+  end
 
   # GET /lenses/new
   def new
@@ -25,12 +27,8 @@ class LensesController < ApplicationController
   # POST /lenses
   def create
     @lens = Lens.new(lens_params)
-
-    if @lens.save
-      redirect_to lens_path(@lens), notice: 'Lens was successfully added.'
-    else
-      render :new
-    end
+    @lens.save
+    redirect_to lens_details_path(@lens), notice: 'Lens was successfully added.'
   end
 
   # PATCH/PUT /lens/1
@@ -49,6 +47,7 @@ class LensesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_lens
     @lens = Lens.find(params[:id])
