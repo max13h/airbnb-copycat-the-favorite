@@ -3,11 +3,20 @@ class LensesController < ApplicationController
 
   # GET /lenses
   def index
-    query = "#{params[:lens]} #{params[:city]} #{params[:camera]}".strip
-    if query.empty?
+    if params[:query]
+      q = "#{params[:query]} #{params[:lens_type]}"
+      @lenses = Lens.filter_query_by_type_and_price(q).filter_by_max_price(params[:price])
+      @query = params[:query]
+      return @filters = "Lens type: #{params[:lens_type]}, max price: #{params[:price]}"
+    end
+
+    @query = "#{params[:lens]} #{params[:city]} #{params[:camera]}".strip
+    @filters = false
+
+    if @query.empty?
       @lenses = Lens.all
     else
-      @lenses = Lens.search_by_model_location_and_camera(query)
+      @lenses = Lens.search_by_model_location_and_camera(@query)
     end
   end
 
