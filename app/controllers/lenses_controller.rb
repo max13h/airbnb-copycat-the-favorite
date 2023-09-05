@@ -13,6 +13,8 @@ class LensesController < ApplicationController
 
   # GET /lenses/1
   def show
+    @lens = Lens.find(params[:id])
+    @booking = Booking.new
   end
 
   # GET /lenses/new
