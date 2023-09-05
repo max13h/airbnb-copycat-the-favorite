@@ -1,49 +1,82 @@
-<h1><%= @lens.name %></h1>
+<div class="container">
+  <%= link_to 'Back to all', lenses_path, class: "fw-bold mt-5 mb-3 d-inline-block" %>
+  <h1 class="mb-5 fw-bold"><%= @lens.name %></h1>
 
-<div class="lens-details">
-  <div class="detail">
-    <p>
-      <strong>Name:</strong> <%= @lens.name %>
-    </p>
+  <div class="lens-details bg-white p-4 rounded shadow mb-4 d-flex justify-content-between align-items-center">
+    <div class="details">
+      <p>
+        <strong>Name:</strong> <%= @lens.name %>
+      </p>
+      <p>
+        <strong>Type:</strong> <%= @lens.lens_type %>
+      </p>
+      <p>
+        <strong>Price:</strong> <%= number_to_currency(@lens.price, unit: '€') %>
+      </p>
+      <p>
+        <strong>Owner: </strong> <%= @lens.user.first_name %> <%= @lens.user.last_name %>
+      </p>
+      <p>
+        <strong>Camera compatibility: </strong><%= @lens.camera.brand %> <%= @lens.camera.model %>
+      </p>
+    </div>
+    <div class="image" style="width: 200px; margin-right: 8rem">
+      <%= cl_image_tag @lens.image.key, crop: :fill, class: "object-fit-fill w-100 p-3" %>
+    </div>
   </div>
-  <div class="detail">
-    <p>
-      <strong>Type:</strong> <%= @lens.lens_type %>
-    </p>
-  </div>
-  <div class="detail">
-    <p>
-      <strong>Price:</strong> <%= number_to_currency(@lens.price, unit: '€') %>
-    </p>
-  </div>
-  <div class="detail">
-    <p>
-      <strong>Owner: </strong> <%= @lens.user.first_name %> <%= @lens.user.last_name %>
-    </p>
-  </div>
-  <div class="detail">
-    <p>
-      <strong>Camera compatibility: </strong><%= @lens.camera.brand %> <%= @lens.camera.model %>
-    </p>
-  </div>
-</div>
 
-<h2>Is this lens avaiable?</h2>
-<% if @lens.bookings.any? %>
-  <div class="bookings">
-    <% @lens.bookings.each do |booking| %>
-      <div class="booking">
-        <div class="detail">
-          <strong>Booked from:</strong> <%= booking.start_date %>
-        </div>
-        <div class="detail">
-          <strong>to:</strong> <%= booking.end_date %>
-        </div>
+  <h2 class="mb-3">Is this lens avaiable?</h2>
+  <div class="bg-white p-4 rounded shadow mb-5 position-relative">
+    <% if @lens.bookings.any? %>
+      <div class="bookings">
+        <% @lens.bookings.each do |booking| %>
+          <div class="booking d-flex align-items-center">
+            <h3 class="fw-bold fs-5 border border-danger rounded px-3 py-1 me-3" style="display: inline-block">Booked</h3>
+            <div class="d-flex flex-column">
+              <p class="p-0 m-0"><strong>from:</strong> <%= booking.start_date.strftime("%d/%m/%Y") %> <strong class="ms-3">to:</strong> <%= booking.end_date.strftime("%d/%m/%Y") %></p>
+
+              <% if booking.is_accepted %>
+                <span class="fst-italic opacity-75 text-success">Booking accepted by the owner <i class="ri-check-line"></i></span>
+              <% else %>
+                <span class="fst-italic opacity-75">Wait for owner validation <i class="ri-hourglass-2-fill opacity-75"></i></span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <span class="position-absolute top-50 start-50 translate-middle">No reservation for this lens.</span>
+    <% end %>
+  </div>
+
+  <h2 class="mb-3">Book this lens</h2>
+  <div class="d-flex justify-content-center mb-5">
+    <%= simple_form_for @booking, method: :post, html: { class: "bg-white p-4 rounded shadow mb-4 d-flex flex-column align-items-center", style: "width: fit-content" } do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs d-flex flex-column align-items-center">
+        <%= f.input :start_date,
+                    as: :date,
+                    order: [:day, :month, :year],
+                    required: true,
+                    autofocus: true,
+                    html5: true,
+                    input_html: { class: "bg-white"  }%>
+        <%= f.input :end_date,
+                    as: :date,
+                    order: [:day, :month, :year],
+                    required: true,
+                    autofocus: true,
+                    html5: true,
+                    input_html: { class: "bg-white"  }%>
+        <%= f.hidden_field :lens_id, :value => @lens.id %>
+      </div>
+
+      <div class="form-actions d-flex flex-column align-items-center">
+        <%= f.button :submit, "Rent this lens", class: "btn btn-outline-primary fw-bold" %>
       </div>
     <% end %>
   </div>
-<% else %>
-  <p>No reservation for this lens.</p>
-<% end %>
 
-<%= link_to 'Back to all', lenses_path %>
+
+</div>

@@ -23,6 +23,7 @@ class LensesController < ApplicationController
   # GET /lenses/1
   def show
     @lens = Lens.find(params[:id])
+    @booking = Booking.new
   end
 
   # GET /lenses/new
@@ -30,13 +31,13 @@ class LensesController < ApplicationController
     @lens = Lens.new
   end
 
-  # GET /lenses/1/edit
-  def edit; end
-
   # POST /lenses
   def create
+    raise
     @lens = Lens.new(lens_params)
-    @lens.save
+    @lens.user = current_user
+    @lens.camera = Camera.last
+    @lens.save!
     redirect_to lens_details_path(@lens), notice: 'Lens was successfully added.'
   end
 
@@ -64,6 +65,6 @@ class LensesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def lens_params
-    params.require(:lens).permit(:name, :lens_type, :price, :location)
+    params.require(:lens).permit(:name, :lens_type, :price, :location, :image)
   end
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :lenses
-  resources :bookings, only: [:index, :destroy, :update]
+  resources :bookings, only: [:index, :create, :destroy, :update]
   get "dashboard", to: "pages#dashboard"
   get "users/:id/lenses", to: "users#lenses", as: "user_lenses"
   get "lenses/new", to: "lenses#new"

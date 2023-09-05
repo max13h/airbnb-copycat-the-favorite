@@ -6,7 +6,8 @@ class BookingsController < ApplicationController
   end
 
   # GET /bookings/1
-  def show; end
+  def show
+  end
 
   # GET /bookings/new
   def new
@@ -19,11 +20,14 @@ class BookingsController < ApplicationController
   # POST /bookings
   def create
     @booking = Booking.new(booking_params)
+    @booking.user = current_user
 
-    if @booking.save
+    if @booking.save!
       redirect_to booking_path(@booking), notice: 'Booking request was successfully send to the owner.'
     else
-      render :new
+      @lens = Lens.find(params[:booking][:lens_id].to_i)
+      @booking = Booking.new
+      render "lenses/show", status: :unprocessable_entity
     end
   end
 
@@ -52,6 +56,6 @@ class BookingsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def booking_params
-    params.require(:booking).permit(:name, :type, :price, :location)
+    params.require(:booking).permit(:start_date, :end_date, :lens_id)
   end
 end
