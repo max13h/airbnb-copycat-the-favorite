@@ -19,4 +19,16 @@ class Lens < ApplicationRecord
   using: {
     tsearch: { prefix: true }
   }
+  pg_search_scope :filter_query_by_type_and_price,
+  against: [ :name, :location, :lens_type ],
+  associated_against: {
+    camera: [ :model, :brand ]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
+
+  def self.filter_by_max_price(max_price)
+    where("price <= ?", max_price)
+  end
 end
