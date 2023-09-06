@@ -1,1 +1,35 @@
-<p>hello from /users/:id/lenses</p>
+<div class="container mb-5">
+  <h1 class="my-5 fw-bold">Overview of your lenses</h1>
+  <div class="p-4 bg-white shadow rounded">
+    <% @lenses.each do |lens| %>
+      <div class="d-flex align-items-center rounded mb-3 position-relative">
+        <%= link_to "", lense_path(lens), data: { turbo_method: :delete, turbo_confirm: "Confirm delete this lens ?" }, class: "position-absolute top-0 ri-close-line fs-3", style: "width: 10px; heigth: 10px; right: 25px", title: "Delete lens" %>
+        <div style="width: 200px">
+          <%= link_to lense_path(lens), class: "col" do %>
+            <%= cl_image_tag lens.image.key, crop: :fill, class: "object-fit-fill w-100 p-3" %>
+          <% end %>
+        </div>
+        <div class="details">
+          <p>
+            <strong>Name:</strong> <%= lens.name %>
+          </p>
+          <p>
+            <strong>Type:</strong> <%= lens.lens_type %>
+          </p>
+          <p>
+            <strong>Price:</strong> <%= number_to_currency(lens.price, unit: '€') %>
+          </p>
+          <p>
+            <strong>Owner: </strong> <%= lens.user.first_name %> <%= lens.user.last_name %>
+          </p>
+          <p>
+            <strong>Camera compatibility: </strong><%= lens.camera.brand %> <%= lens.camera.model %>
+          </p>
+        </div>
+      </div>
+      <% unless lens == @lenses.last %>
+        <hr>
+      <% end %>
+    <% end %>
+  </div>
+</div>
