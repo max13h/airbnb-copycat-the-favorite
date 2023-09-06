@@ -52,8 +52,12 @@ class LensesController < ApplicationController
 
   # DELETE /lenses/1
   def destroy
-    @lens.destroy
-    redirect_to lens_url, notice: 'Lens was successfully deleted.'
+    if @lens.bookings.empty?
+      @lens.destroy
+      redirect_to user_lenses_path, notice: 'Lens was successfully deleted.'
+    else
+      redirect_to user_lenses_path, alert: 'Sorry, this lens have pending or accepted bookings'
+    end
   end
 
   private
