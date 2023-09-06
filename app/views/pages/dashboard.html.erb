@@ -19,7 +19,7 @@
         <hr class="dashboard-hr">
       </div>
       <div>
-        <h2 class="fw-bold fs-4">Your history of bookings:</h2>
+        <h2 class="fw-bold fs-4">Your booking history:</h2>
         <%= render "pages/shared/table_bookings", bookings: @past_bookings %>
         <% if @bookings_on_past.count > 3  %>
           <span class="fs-4">...</span>
@@ -30,7 +30,7 @@
       </div>
     <% else %>
       <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center">
-        <h2 class="fw-bold fs-2 text-center">No current or future booking</h2>
+        <h2 class="fw-bold fs-2 text-center">There are currently no bookings</h2>
         <%= link_to "Bookings history", bookings_path, class: "btn btn-outline-primary fw-bold" %>
       </div>
     <% end %>
@@ -39,7 +39,7 @@
 
   <div class="lenses dashboard-card shadow rounded position-relative">
     <% unless @all_pending_booked_lenses.empty? %>
-      <h2 class="fw-bold fs-4">Your lenses have been booked:</h2>
+      <h2 class="fw-bold fs-4">Your current or future rentals:</h2>
       <%= render "pages/shared/table_booked_lenses", all_pending_booked_lenses: @all_pending_booked_lenses %>
       <div class="w-100 d-flex justify-content-center">
         <%= link_to "All lenses", user_lenses_path(current_user.id), class: "btn
@@ -47,7 +47,7 @@
       </div>
     <% else %>
        <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center">
-        <h2 class="fw-bold fs-2 text-center">No current lenses booked</h2>
+        <h2 class="fw-bold fs-2 text-center">None of your lenses are currently booked</h2>
         <%= link_to "Manage my lenses", user_lenses_path(current_user.id), class: "btn btn-outline-primary fw-bold" %>
       </div>
     <% end %>
