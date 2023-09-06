@@ -21,7 +21,15 @@ class PagesController < ApplicationController
     @future_bookings = @bookings_on_future.sort_by(&:start_date).first(3)
     @past_bookings = @bookings_on_past.sort_by(&:end_date).first(2)
 
-    @all_pending_booked_lenses = Booking.where(user: current_user).where(is_accepted: false).sort_by(&:start_date).first(5)
+    @lenses = Lens.where(user: current_user)
+    @all_pending_booked_lenses = []
+
+    @lenses.each do |lens|
+      @all_pending_booked_lenses << lens.bookings.where(user: current_user).where(is_accepted: false).sort_by(&:start_date)
+
+    end
+
+    @all_pending_booked_lenses = @all_pending_booked_lenses.flatten.first(5)
   end
 
   private
