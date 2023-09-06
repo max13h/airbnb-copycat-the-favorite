@@ -34,7 +34,6 @@ class LensesController < ApplicationController
 
   # POST /lenses
   def create
-    raise
     @lens = Lens.new(lens_params)
     @lens.user = current_user
     @lens.camera = Camera.last

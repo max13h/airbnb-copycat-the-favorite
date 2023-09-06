@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings
   def index
+    @bookings = Booking.where(user: current_user).order(:end_date)
   end
 
   # GET /bookings/1
