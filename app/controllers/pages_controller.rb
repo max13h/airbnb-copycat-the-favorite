@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   def dashboard
     @bookings_on_future = Booking.where(user: current_user).where('start_date > ?', Date.today)
     @bookings_on_past = Booking.where(user: current_user).where('end_date < ?', Date.today)
-    @future_bookings = @bookings_on_future.sort_by(&:start_date).first(3)
+    @future_bookings = @bookings_on_future.sort_by(&:start_date).first(2)
     @past_bookings = @bookings_on_past.sort_by(&:end_date).first(2)
 
     @lenses = Lens.where(user: current_user)

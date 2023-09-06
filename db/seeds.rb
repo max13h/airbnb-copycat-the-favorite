@@ -92,7 +92,7 @@ lenses_type.each do |lens_type|
       {
         name:,
         lens_type:,
-        price: rand(70..200),
+        price: rand(18..45),
         location: city.sample,
         user: User.where.not(email: default_user.email).sample,
         camera: Camera.all.sample

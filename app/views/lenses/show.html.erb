@@ -50,11 +50,10 @@
   </div>
 
   <h2 class="mb-3">Book this lens</h2>
-  <div class="d-flex justify-content-center mb-5">
-    <%= simple_form_for @booking, method: :post, html: { class: "bg-white p-4 rounded shadow mb-4 d-flex flex-column align-items-center", style: "width: fit-content" } do |f| %>
+  <div class="mb-5">
+    <%= simple_form_for @booking, method: :post, html: { class: "bg-white p-4 rounded shadow mb-4 d-flex justify-content-evenly align-items-center" } do |f| %>
       <%= f.error_notification %>
 
-      <div class="form-inputs d-flex flex-column align-items-center">
         <%= f.input :start_date,
                     as: :date,
                     order: [:day, :month, :year],
@@ -70,7 +69,6 @@
                     html5: true,
                     input_html: { class: "bg-white"  }%>
         <%= f.hidden_field :lens_id, :value => @lens.id %>
-      </div>
 
       <div class="form-actions d-flex flex-column align-items-center">
         <%= f.button :submit, "Rent this lens", class: "btn btn-outline-primary fw-bold" %>

@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <%= cl_image_tag booking.lens.image.key, crop: :fill, style: "width: 50px" %>
       <span class=" ms-3 me-3 fw-bold d-inline-block text-truncate" style="display: inline-block; width: 12rem" ><%= booking.lens.name %></span>
-      <span class="me-3"><%= booking.lens.price %>€ / weeks</span>
+      <span class="me-3"><%= booking.lens.price %>€ / day</span>
     </div>
     <div class="d-flex align-items-center">
       <span><%= booking.start_date.strftime("%d/%m/%Y") %> - <%= booking.end_date.strftime("%d/%m/%Y") %></span>
